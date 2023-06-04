@@ -2,5 +2,5 @@
 ----------------------------
 - platform : programmers
 - language : java
-- study time : Tues, Thurs, Satur/n 
+- study time : Tues, Thurs, Satur.  
 `" 2 problems for one time "`
