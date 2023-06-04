@@ -1,2 +1,6 @@
 # algorithm_study
-This is a auto push repository for Baekjoon Online Judge created with [BaekjoonHub](https://github.com/BaekjoonHub/BaekjoonHub).
+----------------------------
+platform : programmers
+language : java
+study time : Tues, Thurs, Satur 
+" 2 problems for one time "
