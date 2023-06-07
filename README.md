@@ -1,5 +1,5 @@
 # algorithm_study
-----------------------------
+
 - platform : programmers
 - language : java
 - study time : Tues, Thurs, Satur.  
