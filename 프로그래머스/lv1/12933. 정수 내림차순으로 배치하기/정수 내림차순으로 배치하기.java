@@ -10,8 +10,8 @@ class Solution {
       num.add(add_num);
       n /= 10;
     }
-
     num.add(n);
+    
     Collections.sort(num, Collections.reverseOrder());
 
     int i = 0;
