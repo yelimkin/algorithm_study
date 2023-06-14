@@ -15,7 +15,7 @@ class Solution {
     Collections.sort(num, Collections.reverseOrder());
 
     int i = 0;
-    while (i < num.size()) {
+    while (i < num.size()) { // [8 , 7, 3, 2, 1, 1]
       answer += (Math.pow(10, i) * num.get((num.size() - 1) - i));
       i++;
     }
