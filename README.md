@@ -3,4 +3,4 @@
 - platform : programmers
 - language : java
 - study time : Tues, Thurs, Satur.  
-`" 2 problems for one time "`
+`" 3 problems for one time "`
