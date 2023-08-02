@@ -66,6 +66,7 @@ class Solution {
 
         StringBuilder sb = new StringBuilder();
         if(r_score == t_score) {
+            // 삼항 연산자의 조건문은 항상 false
             sb.append((("R".charAt(0) - '0') > ("T".charAt(0) - '0')) ? "T" : "R");
         }else if(r_score > t_score) {
             sb.append("R");
