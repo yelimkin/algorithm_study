@@ -28,8 +28,6 @@ public class Main {
 
         // {2=1, 3=2, 6=1, 7=1, -10=2, 10=3}
         // [-10, 2, 3, 6, 7, 10]
-        ArrayList<Integer> keySet = new ArrayList<>(map.keySet());
-        Collections.sort(keySet);
 
         for (int m : marr) {
             if (map.containsKey(m)) {
