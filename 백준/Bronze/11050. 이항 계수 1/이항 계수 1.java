@@ -18,7 +18,8 @@ public class Main {
         if(n == 0) return 1; // 0! = 1
         if(n <= 1) {
             return n;
-        }else {
+        }else { // f(5) = 5 * f(4) = 5 * 4 * f(3) = 5 * 4 * 3 * f(2) = 5 * 4 * 3 * 2 * f(1) 
+            // = 5 * 4 * 3 * 2 * 1 * f(0) =  5 * 4 * 3 * 2 * 1 * 1 = 120 
             return factorial(n - 1) * n;
         }
     }
