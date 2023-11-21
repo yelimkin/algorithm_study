@@ -28,7 +28,7 @@ public class Main {
                 cnt += K /coin[j];
                 K -= (K /coin[j]) * coin[j];
             }
-            if(K < -1) {
+            if(K < 0) {
                 break;
             }
         }
