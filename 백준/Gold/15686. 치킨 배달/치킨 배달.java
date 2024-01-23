@@ -2,16 +2,32 @@ import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+
+class Point {
+    int i;
+    int j;
+
+    Point(int i, int j) {
+        this.i = i;
+        this.j = j;
+    }
+
+    public int getI() {
+        return i;
+    }
+
+    public int getJ() {
+        return j;
+    }
+}
 
 public class Main {
     static int N;
     static int M;
-    static HashMap<String, Integer> house;
-    static ArrayList<int[]> chicken;
-    static int[][] chickenPoint;
-    static List<String> keys;
+    static ArrayList<Point> house;
+    static ArrayList<Point> chicken;
+    static Point[] chickenPoint;
     static int answer = Integer.MAX_VALUE;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -23,8 +39,9 @@ public class Main {
         N = Integer.parseInt(nm[0]);
         M = Integer.parseInt(nm[1]);
         
-        // 집 좌표
-        house = new HashMap<>();
+        // <집 좌표, 치킨집과의 거리>
+        // 해시맵은 탐색을 위해 쓰기..
+        house = new ArrayList<>();
         // 치킨집 좌표
         chicken = new ArrayList<>();
 
@@ -32,22 +49,22 @@ public class Main {
         for(int i=0;i < N;i++) {
             String[] input = br.readLine().split(" ");
             for(int j=0;j < N;j++) {
-                int point = Integer.parseInt(input[j]);
+                int what = Integer.parseInt(input[j]);
+                Point p = new Point(i, j);
 
-                switch(point) {
+                switch(what) {
                     case 1 :
-                        house.put(new String(i + " " + j), Integer.MAX_VALUE);
+                        house.add(p);
                         break;
                     case 2 :
-                        chicken.add(new int[] {i, j});
+                        chicken.add(p);
                         break;
                 }
             }
         }
 
         // 최대 치킨집의 수 M개의 치킨집 좌표 넣는 배열
-        chickenPoint = new int[M][2];
-        keys = new ArrayList<>(house.keySet());
+        chickenPoint = new Point[M];
 
         // 치킨집을 중심으로 각 집과의 거리를 해시맵에 최소로 저장
         // !!! 최대 M개의 치킨집만 있을 때 !!!
@@ -60,7 +77,7 @@ public class Main {
 
     static void chooseChicken(int start, int depth) {
         if(depth == M) {
-            calculateDist(chickenPoint);
+            calculateDist();
             return;
         }
 
@@ -70,32 +87,19 @@ public class Main {
         }
     }
 
-    static void calculateDist(int[][] chickenPoint) {
-        for(int[] arr : chickenPoint) {
-            for(String k : keys) {
-                String[] rc = k.split(" ");
-                int r = Integer.parseInt(rc[0]);
-                int c = Integer.parseInt(rc[1]);
-
-                int distance = Math.abs(arr[0] - r) + Math.abs(arr[1] - c);
-
-                if(house.get(k) > distance) {
-                    house.put(k, distance);
-                }
-            }
-        }
-
+    static void calculateDist() {
         int sum = 0;
-        for(String k : keys) {
-            sum += house.get(k);
+        // 집과 선택된 치킨 집과의 거리 비교
+        for(Point hp : house) {
+            // 집 하나에 대해 치킨집과의 거리 중 최단 거리를 담을 변수
+            int minDist = Integer.MAX_VALUE;
+            for(Point cp : chickenPoint) {
+                int distance = Math.abs(cp.getI() - hp.getI()) + Math.abs(cp.getJ() - hp.getJ());
+                minDist = Math.min(minDist, distance);
+            }
+            sum += minDist;
         }
-        answer = Math.min(answer, sum);
-        resetMap();
-    }
 
-    static void resetMap() {
-        for(String key : keys) {
-            house.put(key, Integer.MAX_VALUE);
-        }
+        answer = Math.min(answer, sum);
     }
 }
