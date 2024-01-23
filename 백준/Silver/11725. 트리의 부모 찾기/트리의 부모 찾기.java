@@ -3,7 +3,6 @@ import java.io.InputStreamReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.HashMap;
 import java.util.Queue;
 
 public class Main {
@@ -13,10 +12,10 @@ public class Main {
 
         int N = Integer.parseInt(br.readLine());
 
+        ArrayList<ArrayList<Integer>> t = new ArrayList<>();
         // 트리의 루트 노드는 1번 노드
-        HashMap<Integer, ArrayList<Integer>> tree = new HashMap<>();
-        for(int i=1;i <= N;i++) {
-            tree.put(i, new ArrayList<>());
+        for(int i=0;i <= N;i++) {
+            t.add(new ArrayList<>());
         }
 
         boolean[] check = new boolean[N+1];
@@ -28,15 +27,15 @@ public class Main {
             int a = Integer.parseInt(input[0]);
             int b = Integer.parseInt(input[1]);
 
-            tree.get(a).add(b);
-            tree.get(b).add(a);
+            t.get(a).add(b);
+            t.get(b).add(a);
         }
 
         Queue<Integer> q = new LinkedList<>();
         q.add(1);
         while(!q.isEmpty()) {
             int tmp = q.poll();
-            ArrayList<Integer> node = tree.get(tmp);
+            ArrayList<Integer> node = t.get(tmp);
 
             if(!check[tmp]) {
                 for(Integer num : node) {
@@ -54,5 +53,6 @@ public class Main {
         }
 
         System.out.println(sb);
+        br.close();
     }
 }
