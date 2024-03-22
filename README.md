@@ -1,6 +1,4 @@
 # algorithm_study
 
-- platform : programmers
+- platform : programmers & Baekjoon
 - language : java
-- study time : Tues, Thurs, Satur.  
-`" 3 problems for one time "`
